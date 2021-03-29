@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace FileManager
 {
@@ -8,37 +10,35 @@ namespace FileManager
 	{
 		static void Main(string[] args)
 		{
-
-			DriveInfo startDriveLeft = GetDrives()[0];
+			
+	/*		DriveInfo startDriveLeft = GetDrives()[0];
 			DriveInfo startDriveRight = GetDrives()[1];
 			var rootLeft = GetRootDir(startDriveLeft);
-			var rootRight = GetRootDir(startDriveRight);
-			var leftSide = GetDirInfo(rootLeft);
-			var rigthSide = GetDirInfo(rootRight);
+			var rootRight = GetRootDir(startDriveRight);*/
+			List<Command> commands = new List<Command>();
+			commands.Add(new HelpCommand());
+			commands.Add(new CreateCommand());
+			commands.Add(new DelCommand());
+			commands.Add(new CopyCommand());
+			commands.Add(new MoveCommand());
+
+
+
+
+
 			Console.ReadKey();
 
-			var sideData = new Data();
+		}
 
-			//sideData.CurrentDirectory = startDriveLeft
+		static void ShowData((DirectoryInfo[] dirs, FileInfo[] files) leftSide, (DirectoryInfo[] dirs, FileInfo[] files) rightSide)
+		{ 
+			
+		
 		}
 
 
 
 
-		static DriveInfo[] GetDrives()
-		{
-			DriveInfo[] drives = DriveInfo.GetDrives();
-			return drives;
-		}
-
-		static DirectoryInfo GetRootDir(DriveInfo Drive)
-		{
-			return Drive.RootDirectory;
-		}
-		static (DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDirectory)
-		{
-			return (currentDirectory.GetDirectories(), currentDirectory.GetFiles());
-		}
 		static void WriteColor(string txt, ConsoleColor color)
 		{
 			Console.ForegroundColor = color;
@@ -46,6 +46,9 @@ namespace FileManager
 			Console.ResetColor();
 		}
 	}
+
+
+
 
 
 
