@@ -117,8 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="startDir" xml:space="preserve">
-    <value>C:</value>
+  <data name="leftStartDir" xml:space="preserve">
+    <value>C:\\</value>
+    <comment>стартовый каталог</comment>
+  </data>
+  <data name="rightStartDir" xml:space="preserve">
+    <value>D:\\</value>
     <comment>стартовый каталог</comment>
   </data>
 </root>

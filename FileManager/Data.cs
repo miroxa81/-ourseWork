@@ -11,7 +11,7 @@ namespace FileManager
 	class Data
 	{
 		private static DriveInfo startDrive = GetDrives()[0];
-		private DirectoryInfo currentDir;
+		private  DirectoryInfo currentDir;
 
 		public Data()
 
@@ -19,32 +19,25 @@ namespace FileManager
 
 		}
 
-		public Data(DirectoryInfo currentDir)
 
+
+		public DirectoryInfo CurrentDir
 		{
-			this.currentDir = currentDir;
+			get
+			{
+				return currentDir;
+			}
+			set
+			{
+				currentDir = value;
+			}
+
 		}
 
-		public DirectoryInfo CurrentDir 	{
-				get { return currentDir; }
-				set
-			{
-				if (!string.IsNullOrEmpty(Properties.Resources.startDir))
-				{
-					currentDir. = Properties.Resources.startDir;
-				}
-			}
-
-}
 
 
-
-		public static(DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDir)
+		public static (DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDir)
 		{
-			if (currentDir==null)
-			{
-				currentDir = startDrive.RootDirectory;
-			}
 			return (currentDir.GetDirectories(), currentDir.GetFiles());
 		}
 		private static DriveInfo[] GetDrives()
