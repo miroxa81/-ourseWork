@@ -10,40 +10,9 @@ namespace FileManager
 {
 	class Data
 	{
-		private static DriveInfo startDrive = GetDrives()[0];
-		private  DirectoryInfo currentDir;
-
-		public Data()
-
-		{
-
-		}
+		private static  DirectoryInfo currentDir;
 
 
-
-		public DirectoryInfo CurrentDir
-		{
-			get
-			{
-				return currentDir;
-			}
-			set
-			{
-				currentDir = value;
-			}
-
-		}
-
-
-
-		public static (DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDir)
-		{
-			return (currentDir.GetDirectories(), currentDir.GetFiles());
-		}
-		private static DriveInfo[] GetDrives()
-		{
-			DriveInfo[] drives = DriveInfo.GetDrives();
-			return drives;
-		}
+	
 	}
 }

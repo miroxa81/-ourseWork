@@ -19,9 +19,9 @@ namespace FileManager
 			commands.Add(new DelCommand());
 			commands.Add(new CopyCommand());
 			commands.Add(new MoveCommand());
-			var sideData = (Data.GetDirInfo(leftSideCurrentDir));
-			ShowData(sideData, 1);
-			sideData = (Data.GetDirInfo(rightSideCurrentDir));
+			var sideData = (GetDirInfo(leftSideCurrentDir));
+			ShowData(sideData, 5);
+			sideData = (GetDirInfo(rightSideCurrentDir));
 			ShowData(sideData, Console.WindowWidth / 2 + 1);
 			Console.ReadKey();
 		}
@@ -54,6 +54,10 @@ namespace FileManager
 		}
 
 
+		 static (DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDir)
+		{
+			return (currentDir.GetDirectories(), currentDir.GetFiles());
+		}
 
 
 		static void WriteColor(string txt, ConsoleColor color)

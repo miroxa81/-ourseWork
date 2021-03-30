@@ -122,7 +122,7 @@
     <comment>стартовый каталог</comment>
   </data>
   <data name="rightStartDir" xml:space="preserve">
-    <value>D:\\</value>
+    <value>C:\\</value>
     <comment>стартовый каталог</comment>
   </data>
 </root>

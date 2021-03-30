@@ -70,7 +70,7 @@ namespace FileManager.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на D:\\.
+        ///   Ищет локализованную строку, похожую на C:\\.
         /// </summary>
         public static string rightStartDir {
             get {
