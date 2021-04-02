@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Configuration;
 using System.Collections.Specialized;
+using System.Runtime.InteropServices;
+
 
 namespace FileManager
 {
 	class Program
 	{
+
 		static void Main(string[] args)
 		{
+
+
 			DirectoryInfo leftSideCurrentDir = new DirectoryInfo(Properties.Resources.leftStartDir);
 			DirectoryInfo rightSideCurrentDir = new DirectoryInfo(Properties.Resources.rightStartDir);
 
@@ -19,19 +24,75 @@ namespace FileManager
 			commands.Add(new DelCommand());
 			commands.Add(new CopyCommand());
 			commands.Add(new MoveCommand());
-			var sideData = (GetDirInfo(leftSideCurrentDir));
-			ShowData(sideData, 5);
-			sideData = (GetDirInfo(rightSideCurrentDir));
-			ShowData(sideData, Console.WindowWidth / 2 + 1);
-			Console.ReadKey();
+
+
+			ConsoleKeyInfo cki;
+			// Prevent example from ending if CTL+C is pressed.
+			Console.TreatControlCAsInput = true;
+
+
+			int xLeft = 5;
+			int yLeft = 1;
+
+			int xRight = Console.WindowWidth / 2 + 1;
+			int yRight = 1;
+			do
+			{
+				cki = Console.ReadKey();
+				var sideData = (GetDirInfo(leftSideCurrentDir));
+				ShowData(sideData, xLeft, yLeft); ;
+				sideData = (GetDirInfo(rightSideCurrentDir));
+				ShowData(sideData, xRight, yRight);
+
+				switch (cki.Key)
+				{
+					case ConsoleKey.LeftArrow:
+						{
+							break;
+						}
+					case ConsoleKey.RightArrow:
+						{
+							break;
+						}
+					case ConsoleKey.UpArrow:
+						{
+							break;
+						}
+					case ConsoleKey.DownArrow:
+						{
+							break;
+						}
+
+
+				}
+
+
+
+			} while (cki.Key != ConsoleKey.Escape);
+
+
+
+
 		}
 
-		static void ShowData((DirectoryInfo[] dirs, FileInfo[] files) SideData, int x)
+		public void Cursor(int x, int y, int lenght)
 		{
-			int y = 1;
+			var block = (char)2591;
+
+			for (int i = x; i < lenght; i++)
+			{
+				Console.SetCursorPosition(i, y);
+				Console.Write(block);
+			}
+		
+		}
+
+		static void ShowData((DirectoryInfo[] dirs, FileInfo[] files) SideData, int x, int y)
+		{
+			
 			for (int i = 0; i < SideData.dirs.Length; i++)
 			{
-				if (y >20 )
+				if (y > 20)
 				{
 					break;
 				}
@@ -54,7 +115,7 @@ namespace FileManager
 		}
 
 
-		 static (DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDir)
+		static (DirectoryInfo[] dirs, FileInfo[] files) GetDirInfo(DirectoryInfo currentDir)
 		{
 			return (currentDir.GetDirectories(), currentDir.GetFiles());
 		}
